@@ -1,0 +1,13 @@
+---
+# defaults file for ntp
+ntp_packages:
+  - chrony
+  - tzdata
+ntp_configuration_file: chrony.conf
+ntp_service: chronyd
+ntp_timezone: Europe/Moscow
+ntp_pool:
+  - 0.pool.ntp.org iburst
+  - 1.pool.ntp.org iburst
+  - 2.pool.ntp.org iburst
+  - 3.pool.ntp.org iburst

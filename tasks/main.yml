@@ -1,0 +1,22 @@
+---
+# tasks file for ntp
+- name: install {{ ntp_packages }}
+  package:
+    name: "{{ ntp_packages }}"
+    state: present
+
+- name: configure /etc/{{ ntp_configuration_file }}
+  template:
+    src: "{{ ntp_configuration_file }}.j2"
+    dest: /etc/{{ ntp_configuration_file }}
+  notify:
+    - restart ntp/chrony
+
+- name: set timezone to {{ ntp_timezone }}
+  timezone:
+    name: "{{ ntp_timezone }}"
+
+- service:
+    name: "{{ ntp_service }}"
+    state: started
+    enabled: yes
